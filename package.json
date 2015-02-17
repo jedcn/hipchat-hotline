@@ -4,7 +4,7 @@
   "description": "A small utility for sending hipchat messages",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,13 @@
   },
   "homepage": "https://github.com/jedcn/hipchat-hotline",
   "devDependencies": {
-    "jasmine-node": "^2.0.0"
+    "gulp": "^3.8.11",
+    "gulp-jasmine": "^2.0.0",
+    "gulp-jshint": "^1.9.2",
+    "jshint-stylish": "^1.0.0"
   },
   "dependencies": {
-
+    "amp-extend": "^1.0.1",
+    "minimist": "^1.1.0"
   }
 }

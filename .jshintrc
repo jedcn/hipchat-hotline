@@ -1,0 +1,15 @@
+{
+  "curly": true,
+  "eqnull": true,
+  "immed": true,
+  "latedef": false,
+  "maxcomplexity": 5,
+  "maxlen": 80,
+  "newcap": true,
+  "noarg": true,
+  "node": true,
+  "quotmark": "single",
+  "sub": true,
+  "undef": true,
+  "unused": true
+}
