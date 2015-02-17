@@ -1,0 +1,28 @@
+{
+  "name": "hipchat-hotline",
+  "version": "0.1.0",
+  "description": "A small utility for sending hipchat messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedcn/hipchat-hotline"
+  },
+  "keywords": [
+    "hipchat"
+  ],
+  "author": "jedcn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jedcn/hipchat-hotline/issues"
+  },
+  "homepage": "https://github.com/jedcn/hipchat-hotline",
+  "devDependencies": {
+    "jasmine-node": "^2.0.0"
+  },
+  "dependencies": {
+
+  }
+}
