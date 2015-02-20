@@ -4,6 +4,17 @@
 
 ## Overview
 
+This is an NPM module that provides a command line script named
+`hchl`. This script lets you send messages directly to HipChat users
+or to everyone in a HipChat room.
+
+The original intent was to provide a small, simple mechanism for
+automated processes running on build, ci, or deployment servers to
+reach out to administrators through HipChat.
+
+Examples follow detailing how it can be used (1) For People and then
+(2) For Rooms.
+
 ### For People
 
 Send a message to a single person on hipchat:
@@ -41,8 +52,8 @@ And you can control colors:
 
     hchl --color red TheEnormousRoom "Things are not cool."
 
-The default color is `green`, and you can choose from `red` and
-`gray`, and `purple`
+While we're talking about colors, the default color is `green`, and
+you can choose from `red` and `gray`, and `purple`.
 
 You don't need to interrupt a room if you don't want:
 
