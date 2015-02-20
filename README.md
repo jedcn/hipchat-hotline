@@ -1,9 +1,9 @@
+<img alt="HipChat" style="width: 100px; height: 100px" src="doc/images/hipchat.png">
+<img alt="Hotline" style="width: 100px; height: 100px" src="doc/images/hotline.png">
+
 # hipchat-hotline
 
 [![Build Status](https://travis-ci.org/jedcn/hipchat-hotline.svg?branch=master)](https://travis-ci.org/jedcn/hipchat-hotline)
-
-<img alt="HipChat" style="width: 100px; height: 100px" src="doc/images/hipchat.png">
-<img alt="Hotline" style="width: 100px; height: 100px" src="doc/images/hotline.png">
 
 ## Overview
 
