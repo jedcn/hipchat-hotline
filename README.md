@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/jedcn/hipchat-hotline.svg?branch=master)](https://travis-ci.org/jedcn/hipchat-hotline)
 
+<img alt="HipChat" style="width: 100px; height: 100px" src="doc/images/hipchat.png">
+<img alt="Hotline" style="width: 100px; height: 100px" src="doc/images/hotline.png">
+
 ## Overview
 
 This is an NPM module that provides a command line script named
