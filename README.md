@@ -4,6 +4,7 @@
 # hipchat-hotline
 
 [![Build Status](https://travis-ci.org/jedcn/hipchat-hotline.svg?branch=master)](https://travis-ci.org/jedcn/hipchat-hotline)
+[![Coverage Status](https://coveralls.io/repos/jedcn/hipchat-hotline/badge.svg?branch=master)](https://coveralls.io/r/jedcn/hipchat-hotline?branch=master)
 
 ## Overview
 
