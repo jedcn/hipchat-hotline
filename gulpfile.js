@@ -10,12 +10,22 @@ gulp.task('lint', function() {
 });
 
 // Testing..
-gulp.task('test', function () {
-  var jasmine = require('gulp-jasmine');
-  return gulp.src('test/**/*spec.js')
-    .pipe(jasmine({
-      'verbose': (process.env['VERBOSE'] == 'true')
-    }));
+var istanbul = require('gulp-istanbul'),
+    jasmine = require('gulp-jasmine');
+gulp.task('test', function (cb) {
+  gulp.src('lib/**/*.js')
+    .pipe(istanbul({
+      'includeUntested': true
+    }))
+    .pipe(istanbul.hookRequire())
+    .on('finish', function () {
+      gulp.src(['test/**/*spec.js'])
+        .pipe(jasmine({
+          'verbose': (process.env['VERBOSE'] == 'true')
+        }))
+        .pipe(istanbul.writeReports())
+        .on('end', cb);
+    });
 });
 
-gulp.task('default', ['test', 'lint']);
+gulp.task('default', ['test']);
