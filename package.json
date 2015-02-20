@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "amp-extend": "^1.0.1",
+    "amp-reduce": "^1.0.0",
     "minimist": "^1.1.0"
   }
 }

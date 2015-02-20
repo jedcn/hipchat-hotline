@@ -1,6 +1,6 @@
-var heuristic = require("../../lib/hip-heuristic").heuristic;
+var heuristic = require('../../lib/hip-heuristic').heuristic;
 
-describe("hip-heuristic", function() {
+describe('hip-heuristic', function() {
 
   var sampleArgvForUserMessage = [ 'node',
                                    '/projects/hipchat-hotline/bin/hchl',
@@ -23,8 +23,8 @@ describe("hip-heuristic", function() {
                                        'false',
                                        'It worked' ];
 
-  describe("recipient", function() {
-    it("grabs the first non-option argument", function() {
+  describe('recipient', function() {
+    it('grabs the first non-option argument', function() {
       var result = heuristic(sampleArgvForUserMessage);
       expect(result.recipient()).toEqual('you@company.com');
 
@@ -33,74 +33,108 @@ describe("hip-heuristic", function() {
     });
   });
 
-  describe("recipientType", function() {
-    it("is user for things that look like '@UserName'", function() {
+  describe('recipientType', function() {
+    it('is user for things that look like "@UserName"', function() {
       var result = heuristic([ 'node',
                                '/projects/hipchat-hotline/bin/hchl',
                                '@UserName',
                                'Hi' ]);
       expect(result.recipientType()).toEqual('user');
     });
-    it("is user for email addresses", function() {
+    it('is user for email addresses', function() {
       var result = heuristic(sampleArgvForUserMessage);
-      expect(result.recipientType()).toEqual("user");
+      expect(result.recipientType()).toEqual('user');
     });
-    it("is room for everything else", function() {
+    it('is room for everything else', function() {
       var result = heuristic(sampleArgvForRoomMessage);
-      expect(result.recipientType()).toEqual("room");
+      expect(result.recipientType()).toEqual('room');
     });
   });
 
-  describe("options", function() {
-    it("returns defaults", function() {
+  describe('options', function() {
+    it('returns defaults', function() {
       var result= heuristic(sampleArgvForUserMessage);
       var options = result.options();
-      expect(options["message-format"]).toEqual('text');
-      expect(options["notify"]).toBe(true);
-      expect(options["color"]).toBe("green");
+      expect(options['message-format']).toEqual('text');
+      expect(options['notify']).toBe(true);
+      expect(options['color']).toBe('green');
     });
 
-    it("supports --notify", function() {
+    it('supports --notify', function() {
       var result = heuristic([ 'node',
                                '/projects/hipchat-hotline/bin/hchl',
                                'Robot Workshop',
                                '--notify',
                                'false',
                                'It worked' ]);
-      expect(result.options()["notify"]).toBe(false);
+      expect(result.options()['notify']).toBe(false);
     });
-    it("supports --color", function() {
+    it('supports --color', function() {
       var result = heuristic([ 'node',
                                '/projects/hipchat-hotline/bin/hchl',
                                'Robot Workshop',
                                '--color',
                                'random',
                                'It worked' ]);
-      expect(result.options()["color"]).toBe("random");
+      expect(result.options()['color']).toBe('random');
     });
-    it("supports --message-format", function() {
-      var result = heuristic([ 'node',
+    describe('--message-format', function() {
+      describe('when not explicitly set', function() {
+        it('defaults to text', function() {
+          var result = heuristic([ 'node',
+                                   '/projects/hipchat-hotline/bin/hchl',
+                                   'Robot Workshop',
+                                   'It worked' ]);
+          expect(result.options()['message_format']).toBe('text');
+        });
+        it('it switches to html if your message looks like html', function() {
+          var result = heuristic([ 'node',
+                                   '/projects/hipchat-hotline/bin/hchl',
+                                   'Robot Workshop',
+                                   'It <b>worked</b>' ]);
+          expect(result.options()['message_format']).toBe('html');
+          result = heuristic([ 'node',
                                '/projects/hipchat-hotline/bin/hchl',
                                'Robot Workshop',
-                               '--message-format',
-                               'html',
-                               'It worked' ]);
-      expect(result.options()["message-format"]).toBe("html");
+                               'It <pre>worked</pre>' ]);
+          expect(result.options()['message_format']).toBe('html');
+        });
+      });
+      describe('when explicit set', function() {
+        it('is what you set it to', function() {
+          var result = heuristic([ 'node',
+                                   '/projects/hipchat-hotline/bin/hchl',
+                                   'Robot Workshop',
+                                   '--message-format',
+                                   'html',
+                                   'It worked' ]);
+          expect(result.options()['message_format']).toBe('html');
+        });
+        it('it will be text even if your message looks like html ', function() {
+          var result = heuristic([ 'node',
+                                   '/projects/hipchat-hotline/bin/hchl',
+                                   'Robot Workshop',
+                                   '--message-format',
+                                   'text',
+                                   'It <b>worked</b>' ]);
+          expect(result.options()['message_format']).toBe('text');
+        });
+      });
     });
-    it("supports everything jumbled together", function() {
+    it('supports everything jumbled together', function() {
       var result = heuristic(manyOptionArgvForRoomMessage);
       var options = result.options();
-      expect(options["message-format"]).toBe("html");
-      expect(options["color"]).toBe("random");
-      expect(options["notify"]).toBe(false);
+      expect(options['message_format']).toBe('html');
+      expect(options['color']).toBe('random');
+      expect(options['notify']).toBe(false);
     });
   });
-  describe("content", function() {
-    it("returns the String after the recipient and the options", function() {
+  describe('content', function() {
+    it('is the String after the recipient and the options', function() {
       var result = heuristic(manyOptionArgvForRoomMessage);
       expect(result.content()).toEqual('It worked');
     });
-    it("returns all of the text after the recipient and the options", function() {
+    it('is the text after the recipient and the options', function() {
       var result = heuristic([ 'node',
                                '/projects/hipchat-hotline/bin/hchl',
                                'you@company.com',

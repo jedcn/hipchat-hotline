@@ -3,7 +3,7 @@ var gulp = require('gulp');
 // Linting..
 gulp.task('lint', function() {
   var jshint = require('gulp-jshint');
-  return gulp.src('./lib/*.js')
+  return gulp.src(['./lib/**/*.js', './spec/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
@@ -18,4 +18,4 @@ gulp.task('test', function () {
     }));
 });
 
-gulp.task('default', ['lint', 'test']);
+gulp.task('default', ['test', 'lint']);
