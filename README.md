@@ -38,3 +38,11 @@ Once you've got this token, set it as an environment variable:
     export HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
 
 And you should be off to the races.
+
+## More Examples?
+
+Here's a shell script that is used for general testing. It provides
+several examples of how this command line utility could be used:
+[spec/examples.sh][examples].
+
+[examples]: ./spec/examples.sh
