@@ -4,8 +4,9 @@
   "description": "A small utility for sending hipchat messages",
   "main": "index.js",
   "scripts": {
-    "test": "npm run-script lint && gulp test",
-    "lint": "node_modules/jshint/bin/jshint lib test bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules"
+    "send_coverage_to_coveralls": "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
+    "lint": "node_modules/jshint/bin/jshint lib test bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
+    "test": "npm run-script lint && gulp test"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/jedcn/hipchat-hotline",
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "gulp": "^3.8.11",
     "gulp-istanbul": "^0.6.0",
     "gulp-jasmine": "^2.0.0",
