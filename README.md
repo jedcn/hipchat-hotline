@@ -98,6 +98,6 @@ And you should be off to the races.
 
 Here's a shell script that is used for general testing. It provides
 several examples of how this command line utility could be used:
-[spec/examples.sh][examples].
+[test/examples.sh][examples].
 
-[examples]: ./spec/examples.sh
+[examples]: ./test/examples.sh
