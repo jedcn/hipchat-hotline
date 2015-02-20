@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jedcn/hipchat-hotline",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-istanbul": "^0.6.0",
     "gulp-jasmine": "^2.0.0",
     "gulp-jshint": "^1.9.2",
     "jshint-stylish": "^1.0.0"
