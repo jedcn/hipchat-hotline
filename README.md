@@ -109,3 +109,10 @@ several examples of how this command line utility could be used:
 [test/examples.sh][examples].
 
 [examples]: ./test/examples.sh
+
+## Contributing
+
+If you'd like to contribute check out
+[CONTRIBUTING.md][CONTRIBUTING.md].
+
+[CONTRIBUTING.md]: ./doc/CONTRIBUTING.md
