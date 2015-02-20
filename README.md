@@ -1,26 +1,70 @@
 # hipchat-hotline
 
+[![Build Status](https://travis-ci.org/jedcn/hipchat-hotline.svg?branch=master)](https://travis-ci.org/jedcn/hipchat-hotline)
+
 ## Overview
 
-    # Send a message to a single person on hipchat
-    hchl <email-address> <message>
+### For People
 
-    # Send a message to a hipchat room
-    hchl <hipchat-room> <message>
+Send a message to a single person on hipchat:
 
-## For Example..
+    # Using a @nickname
+    hchl @YourFriend "Hi there"
 
-    hchl friend@company.com "Ack! Take a look at <a href='$BUILD_URL'>build $BUILD_NUMBER</a>"
-    hchl "Lego Room" "Everything is awesome!"
+or..
+
+    # Using an email address:
+    hchl yourfriend@company.com 'Time is up! Let us do this!'
+
+HipChat allows you to send `text` or `html` messages. By default we'll
+send `text`, unless we see that your content has some HTML tags in
+it. And if that's the case we'll send `html`:
+
+    hchl @nickname "This will be a link to <a href='https://hipchat.com'>hipchat</a>"
+
+But you can be explicit about `text` vs `html`, if you're into that:
+
+    hchl @nickname --message-format text "This will be <b>text</b>"
+
+By default the hipchat-hotline notifies people and makes their phone
+buzz or app "pop up", but you can be quiet about it:
+
+    hchl --notify false @nickname "This will be quiet"
+
+### For Rooms
+
+Send a message to everyone in a particular room:
+
+    hchl MiracleOfScience "Everything is OK."
+
+And you can control colors:
+
+    hchl --color red TheEnormousRoom "Things are not cool."
+
+The default color is `green`, and you can choose from `red` and
+`gray`, and `purple`
+
+You don't need to interrupt a room if you don't want:
+
+    hchl --notify false TheMiddleEast "This will appear, but won't notify."
+
+You can also do the `--message-format` thing, setting it to `text` or
+`html` as you please.
 
 ## Installation
 
     npm install -g hipchat-hotline
 
-### Setup: Who are you?
+### Setup: Who are you sending as?
 
-Login to https://www.hipchat.com with the account you want to send
-messages as and:
+In order to use `hchl` (aka: hipchat-hotline) you need to set an
+environment variable named `HIPCHAT_API_TOKEN`. Whenever you use
+`hchl` you'll send messages as the identify to which this token
+belongs.
+
+Presuming you've got a HipChat account, login to
+https://www.hipchat.com with the account you want to send messages as
+and:
 
 * Click Edit Profile
 * Click API Access
