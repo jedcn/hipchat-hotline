@@ -24,7 +24,8 @@
     "gulp-istanbul": "^0.6.0",
     "gulp-jasmine": "^2.0.0",
     "gulp-jshint": "^1.9.2",
-    "jshint-stylish": "^1.0.0"
+    "jshint-stylish": "^1.0.0",
+    "rewire": "^2.3.0"
   },
   "dependencies": {
     "amp-extend": "^1.0.1",
