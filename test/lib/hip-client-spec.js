@@ -6,7 +6,7 @@ var client = hipClientModule.client;
 
 describe('hip-client', function() {
 
-  var injectedConstructor = function(token) {
+  var injectedConstructor = function() {
     return mockHipChatterInstance;
   };
 
@@ -27,11 +27,13 @@ describe('hip-client', function() {
       },
       exampleMessage = 'sampleMessage';
 
-  describe('sendDirectMessage', function() {
+  describe('sendUserMessage', function() {
     it('works with HipChatter#send_private_message', function() {
       spyOn(mockHipChatterInstance, 'send_private_message');
-      hipClient.sendDirectMessage(exampleUser, exampleMessage, exampleOptions);
-      var expectedOptions = extend({}, { 'message': exampleMessage }, exampleOptions);
+      hipClient.sendUserMessage(exampleUser, exampleMessage, exampleOptions);
+      var expectedOptions = extend({},
+                                   { 'message': exampleMessage },
+                                   exampleOptions);
       expect(mockHipChatterInstance.send_private_message)
         .toHaveBeenCalledWith(exampleUser,
                               expectedOptions,
@@ -43,7 +45,9 @@ describe('hip-client', function() {
     it('works with HipChatter#notify', function() {
       spyOn(mockHipChatterInstance, 'notify');
       hipClient.sendRoomMessage(exampleRoom, exampleMessage, exampleOptions);
-      var expectedOptions = extend({}, { 'message': exampleMessage }, exampleOptions);
+      var expectedOptions = extend({},
+                                   { 'message': exampleMessage },
+                                   exampleOptions);
       expect(mockHipChatterInstance.notify)
         .toHaveBeenCalledWith(exampleRoom,
                               expectedOptions,
