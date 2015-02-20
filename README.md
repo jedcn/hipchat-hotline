@@ -1,5 +1,5 @@
-<img alt="HipChat" style="width: 100px; height: 100px" src="doc/images/hipchat.png">
-<img alt="Hotline" style="width: 100px; height: 100px" src="doc/images/hotline.png">
+<img alt="HipChat" style="width: 100px; height: 100px" src="https://raw.githubusercontent.com/jedcn/hipchat-hotline/master/docs/images/hipchat.png">
+<img alt="Hotline" style="width: 100px; height: 100px" src="https://raw.githubusercontent.com/jedcn/hipchat-hotline/master/docs/images/hotline.png">
 
 # hipchat-hotline
 
@@ -115,4 +115,4 @@ several examples of how this command line utility could be used:
 If you'd like to contribute check out
 [CONTRIBUTING.md][CONTRIBUTING.md].
 
-[CONTRIBUTING.md]: ./doc/CONTRIBUTING.md
+[CONTRIBUTING.md]: ./docs/CONTRIBUTING.md
