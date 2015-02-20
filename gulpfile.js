@@ -28,4 +28,4 @@ gulp.task('test', function (cb) {
     });
 });
 
-gulp.task('default', ['test', 'lint']);
+gulp.task('default', ['test']);
