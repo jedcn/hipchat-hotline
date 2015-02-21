@@ -34,8 +34,18 @@ described above.
 In addition to running `npm test`, travis-ci will also upload coverage
 information to [https://coveralls.io](https://coveralls.io).
 
-* hipchat-hotline builds: https://travis-ci.org/jedcn/hipchat-hotline
-* hipchat-hotline coverage: https://coveralls.io/r/jedcn/hipchat-hotline
+## Code Analysis
+
+https://codeclimate.com provides analysis for this project, and it's
+available here: https://codeclimate.com/github/jedcn/hipchat-hotline
+
+## Service Overview
+
+hipchat-hotline:
+
+* builds: https://travis-ci.org/jedcn/hipchat-hotline
+* coverage: https://coveralls.io/r/jedcn/hipchat-hotline
+* source analysis: https://codeclimate.com/github/jedcn/hipchat-hotline
 
 ## Installing before Publishing
 
