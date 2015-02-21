@@ -1,7 +1,7 @@
 {
   "name": "hipchat-hotline",
   "version": "0.1.0",
-  "description": "A small utility for sending hipchat messages",
+  "description": "A small command line utility for sending hipchat messages",
   "main": "index.js",
   "bin": {
     "hipchat-hotline": "./bin/hipchat-hotline"
