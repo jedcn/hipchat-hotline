@@ -51,12 +51,28 @@ hipchat-hotline:
 
 This NPM package is available at https://npmjs.org, but it's important
 to note that you can install candidates and use them *before* you
-publish them:
+publish them.
+
+If you are working on `hipchat-hotline` changes locally, you can `cd`
+to the root of your clone and run:
+
+```sh
+npm install . -g
+```
+
+And then you'll be able to run your local `hipchat-hotline`.
+
+If you are working on `hipchat-hotline` and you want *someone else* to
+test or interact what what you've built, push your changes up to a
+fork/branch and then ask that person to run:
 
 ```sh
 npm install -g git://github.com/jedcn/hipchat-hotline.git#e00da7a
 ```
 
-This can let you route around lackadaisical project maintainers, and
-more importantly, verify that things are working as you'd expect
-before you publish to everyone else.
+Where `jedcn` is replaced with your username.
+
+When you're done you can run `npm uninstall -g hipchat-hotline`.
+
+More information about these techniques is available here:
+https://docs.npmjs.com/misc/developers.
