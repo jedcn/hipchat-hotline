@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A small utility for sending hipchat messages",
   "main": "index.js",
+  "bin": {
+    "hipchat-hotline": "./bin/hipchat-hotline"
+  },
   "scripts": {
     "send_coverage_to_coveralls": "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
     "lint": "node_modules/jshint/bin/jshint lib test bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
