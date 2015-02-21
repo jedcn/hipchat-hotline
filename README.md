@@ -5,6 +5,7 @@
 
 [![Build Status](https://travis-ci.org/jedcn/hipchat-hotline.svg?branch=master)](https://travis-ci.org/jedcn/hipchat-hotline)
 [![Coverage Status](https://coveralls.io/repos/jedcn/hipchat-hotline/badge.svg?branch=master)](https://coveralls.io/r/jedcn/hipchat-hotline?branch=master)
+[![Code Climate](https://codeclimate.com/github/jedcn/hipchat-hotline/badges/gpa.svg)](https://codeclimate.com/github/jedcn/hipchat-hotline)
 
 ## Overview
 
