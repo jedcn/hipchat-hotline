@@ -9,78 +9,150 @@
 ## Overview
 
 This is an NPM module that provides a command line script named
-`hchl`.
+`hipchat-hotline`.
 
-This script lets you send messages directly to HipChat users or to
-everyone in a HipChat room.
+`hipchat-hotline` lets you send messages to HipChat users or to
+HipChat rooms, e.g.:
 
-The original intent was to provide a small, simple mechanism for
-automated processes running on build, ci, or deployment servers to
-reach out to people waiting for builds, ci results, or deploys through
-HipChat.
+```sh
+hipchat-hotline <recipient> <message>
+#
+# Users..
+hipchat-hotline user@company.com "There's a problem with <a href='$BUILD_URL'>this build</a>."
+hipchat-hotline @SpecificUser Your latest commit has been built and deployed.
 
-Examples follow detailing how it can be used:
+#
+# Rooms..
+hipchat-hotline 'Maintenance Room' 'All merged branches have been removed. Cleanup complete.'
+hipchat-hotline --color red AwesomeRoom "There's a problem with <a href='$BUILD_URL'>this build</a>."
+```
+
+It has many uses, but it was originally created so that processes
+(build, ci, deployment, general automation) could notify people with
+when and how they completed.
+
+While this information is undoubtedly stored in other parts of your
+system(s), HipChat is a good medium because you get notifications,
+timestamps, and search for free.
+
+---
+
+Additional examples follow, split into two categories:
 
 1. For People, and then
 2. For Rooms
 
 ### For People
 
-Send a message to a single person on hipchat:
+#### Using @nickname
 
-    # Using a @nickname
-    hchl @YourFriend "Hi there"
+Send a message to a single person on hipchat using an @nickname:
 
-or..
+```sh
+hipchat-hotline @YourFriend "Hi there"
+```
 
-    # Using an email address:
-    hchl yourfriend@company.com 'Time is up! Let us do this!'
+#### Using email address
 
-HipChat allows you to send `text` or `html` messages. By default we'll
-send `text`, unless we see that your content has some HTML tags in
-it. And if that's the case we'll send `html`:
+or you can use an email address:
 
-    hchl @nickname "This will be a link to <a href='https://hipchat.com'>hipchat</a>"
+```sh
+hipchat-hotline yourfriend@company.com 'Time is up! Let us do this!'
+```
 
-But you can be explicit about `text` vs `html`, if you're into that:
+#### Sidenote about Quotes
 
-    hchl @nickname --message-format text "This will be <b>text</b>"
+`hipchat-hotline` is a command line utility, and so, your shell will
+interpret arguments before it runs. It is safest to pass two
+arguments by explicitly wrapping the arguments in quotes.
+
+However, if you're daring you can take advantage of the fact that
+`hipchat-hotline` will combine all arguments beyond the first into the
+second, so, these two ideas become equivalent:
+
+```sh
+hipchat-hotline @user 'This is a message'
+hipchat-hotline @user This is a message
+```
+
+#### `--message-format`: `text` vs `html` and defaults
+
+HipChat (the service) allows you to specify whether your message
+should be interepted as `text` or `html`. By default `hipchat-hotline`
+will send `text`, unless we see that your content has the HipChat
+supported HTML tags in it. If `hipchat-hotline` sees those tags it
+will send `html`:
+
+```sh
+hipchat-hotline @user 'This will be text'
+hipchat-hotline @user "This will be html because of this link to <a href='https://hipchat.com'>hipchat</a>"
+```
+
+However, you can be explicit about `text` vs `html`, if you're into
+that:
+
+```sh
+hipchat-hotline @user --message-format text "This will be <b>text</b> even though there is a <b>"
+```
+
+#### `--notify`
 
 By default the hipchat-hotline notifies people and makes their phone
-buzz or app "pop up", but you can be quiet about it:
+buzz or client application "pop up" on their desktop, but you can be
+quiet about it:
 
-    hchl --notify false @nickname "This will be quiet"
+```sh
+hipchat-hotline --notify false @user "This will be quiet"
+```
 
 ### For Rooms
 
 Send a message to everyone in a particular room:
 
-    hchl MiracleOfScience "Everything is OK."
+```
+hipchat-hotline MiracleOfScience "Everything is OK."
+hipchat-hotline 'Wrap Room Name In Quotes If There Are Spaces' 'Got it! Thanks.'
+```
 
-And you can control colors:
+#### `--color`
 
-    hchl --color red TheEnormousRoom "Things are not cool."
+HipChat allows you to specify the color of a message when you're
+sending to a room. The default color is `green`, and you can choose
+from `red` and `gray`, and `purple`:
 
-While we're talking about colors, the default color is `green`, and
-you can choose from `red` and `gray`, and `purple`.
+```
+hipchat-hotline --color gray   TheEnormousRoom "Things are not cool."
+hipchat-hotline --color green  TheEnormousRoom "Things are not cool."
+hipchat-hotline --color purple TheEnormousRoom "Things are not cool."
+hipchat-hotline --color red    TheEnormousRoom "Things are not cool."
+```
+
+#### `--notify`
 
 You don't need to interrupt a room if you don't want:
 
-    hchl --notify false TheMiddleEast "This will appear, but won't notify."
+```sh
+hipchat-hotline --notify false TheMiddleEast "This will appear, but won't notify."
+```
+
+#### `--message-format` (again)
 
 You can also do the `--message-format` thing, setting it to `text` or
 `html` as you please.
 
 ## Installation
 
-    npm install -g hipchat-hotline
+### Basics
+
+```sh
+npm install -g hipchat-hotline
+```
 
 ### Setup: Who are you sending as?
 
-In order to use `hchl` (aka: hipchat-hotline) you need to set an
-environment variable named `HIPCHAT_API_TOKEN`. Whenever you use
-`hchl` you'll send messages as the identify to which this token
-belongs.
+In order to use `hipchat-hotline` you need to set an environment
+variable named `HIPCHAT_API_TOKEN`. Whenever you use `hipchat-hotline`
+you'll send messages as the identify to which this token belongs.
 
 Presuming you've got a HipChat account, login to
 https://www.hipchat.com with the account you want to send messages as

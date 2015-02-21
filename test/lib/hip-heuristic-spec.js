@@ -3,17 +3,17 @@ var heuristic = require('../../lib/hip-heuristic').heuristic;
 describe('hip-heuristic', function() {
 
   var sampleArgvForUserMessage = [ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'you@company.com',
                                    'Hi' ],
 
       sampleArgvForRoomMessage = [ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'Robot Workshop',
                                    'It worked' ],
 
       manyOptionArgvForRoomMessage = [ 'node',
-                                       '/projects/hipchat-hotline/bin/hchl',
+                                       '/usr/local/bin/hipchat-hotline',
                                        'Robot Workshop',
                                        '--color',
                                        'random',
@@ -36,7 +36,7 @@ describe('hip-heuristic', function() {
   describe('recipientType', function() {
     it('is user for things that look like "@UserName"', function() {
       var result = heuristic([ 'node',
-                               '/projects/hipchat-hotline/bin/hchl',
+                               '/usr/local/bin/hipchat-hotline',
                                '@UserName',
                                'Hi' ]);
       expect(result.recipientType()).toEqual('user');
@@ -62,7 +62,7 @@ describe('hip-heuristic', function() {
 
     it('supports --notify', function() {
       var result = heuristic([ 'node',
-                               '/projects/hipchat-hotline/bin/hchl',
+                               '/usr/local/bin/hipchat-hotline',
                                'Robot Workshop',
                                '--notify',
                                'false',
@@ -71,7 +71,7 @@ describe('hip-heuristic', function() {
     });
     it('supports --color', function() {
       var result = heuristic([ 'node',
-                               '/projects/hipchat-hotline/bin/hchl',
+                               '/usr/local/bin/hipchat-hotline',
                                'Robot Workshop',
                                '--color',
                                'random',
@@ -82,19 +82,19 @@ describe('hip-heuristic', function() {
       describe('when not explicitly set', function() {
         it('defaults to text', function() {
           var result = heuristic([ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'Robot Workshop',
                                    'It worked' ]);
           expect(result.options()['message_format']).toBe('text');
         });
         it('it switches to html if your message looks like html', function() {
           var result = heuristic([ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'Robot Workshop',
                                    'It <b>worked</b>' ]);
           expect(result.options()['message_format']).toBe('html');
           result = heuristic([ 'node',
-                               '/projects/hipchat-hotline/bin/hchl',
+                               '/usr/local/bin/hipchat-hotline',
                                'Robot Workshop',
                                'It <pre>worked</pre>' ]);
           expect(result.options()['message_format']).toBe('html');
@@ -103,7 +103,7 @@ describe('hip-heuristic', function() {
       describe('when explicit set', function() {
         it('is what you set it to', function() {
           var result = heuristic([ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'Robot Workshop',
                                    '--message-format',
                                    'html',
@@ -112,7 +112,7 @@ describe('hip-heuristic', function() {
         });
         it('it will be text even if your message looks like html ', function() {
           var result = heuristic([ 'node',
-                                   '/projects/hipchat-hotline/bin/hchl',
+                                   '/usr/local/bin/hipchat-hotline',
                                    'Robot Workshop',
                                    '--message-format',
                                    'text',
@@ -136,7 +136,7 @@ describe('hip-heuristic', function() {
     });
     it('is the text after the recipient and the options', function() {
       var result = heuristic([ 'node',
-                               '/projects/hipchat-hotline/bin/hchl',
+                               '/usr/local/bin/hipchat-hotline',
                                'you@company.com',
                                '--color',
                                'random',
