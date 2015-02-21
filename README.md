@@ -12,28 +12,30 @@ This is an NPM module that provides a command line script named
 `hipchat-hotline`.
 
 `hipchat-hotline` lets you send messages to HipChat users or to
-HipChat rooms, e.g.:
+HipChat rooms by typing `hipchat-hotline <recipient> <message>`.
+
+Some examples:
 
 ```sh
-hipchat-hotline <recipient> <message>
 #
 # Users..
-hipchat-hotline user@company.com "There's a problem with <a href='$BUILD_URL'>this build</a>."
+hipchat-hotline user@company.com "<a href='$BUILD_URL'>This build</a> failed."
 hipchat-hotline @SpecificUser Your latest commit has been built and deployed.
 
 #
 # Rooms..
-hipchat-hotline 'Maintenance Room' 'All merged branches have been removed. Cleanup complete.'
-hipchat-hotline --color red AwesomeRoom "There's a problem with <a href='$BUILD_URL'>this build</a>."
+hipchat-hotline 'Maintenance Room' 'Merged branches removed. Cleanup complete.'
+hipchat-hotline --color red TeamRoom "<a href='$BUILD_URL'>This build</a> failed."
 ```
 
-It has many uses, but it was originally created so that processes
-(build, ci, deployment, general automation) could notify people with
-when and how they completed.
+It has many uses, but was originally created so that processes (build,
+ci, deployment, general automation) could notify people with when and
+how they completed.
 
-While this information is undoubtedly stored in other parts of your
-system(s), HipChat is a good medium because you get notifications,
-timestamps, and search for free.
+**HipChat is a good medium because it's so accessible, and you get
+notifications, timestamps, and search for free.** Build, ci, and
+deployment information is obviously available elsewhere, but it's
+usually less accessible and not ambiently available.
 
 ---
 
@@ -85,14 +87,14 @@ will send `html`:
 
 ```sh
 hipchat-hotline @user 'This will be text'
-hipchat-hotline @user "This will be html because of this link to <a href='https://hipchat.com'>hipchat</a>"
+hipchat-hotline @user "This will be html: <a href='https://hipchat.com'>hipchat</a>"
 ```
 
 However, you can be explicit about `text` vs `html`, if you're into
 that:
 
 ```sh
-hipchat-hotline @user --message-format text "This will be <b>text</b> even though there is a <b>"
+hipchat-hotline --message-format text @user "This will be <b>text</b>"
 ```
 
 #### `--notify`
@@ -121,15 +123,15 @@ sending to a room. The default color is `green`, and you can choose
 from `red` and `gray`, and `purple`:
 
 ```
-hipchat-hotline --color gray   TheEnormousRoom "Things are not cool."
-hipchat-hotline --color green  TheEnormousRoom "Things are not cool."
-hipchat-hotline --color purple TheEnormousRoom "Things are not cool."
-hipchat-hotline --color red    TheEnormousRoom "Things are not cool."
+hipchat-hotline --color gray "Phoenix Landing" "It's been awhile."
+hipchat-hotline --color green "Rangzen Tibetan Place" 'Good Food!'
+hipchat-hotline --color purple 'The Field' Nice atmosphere.
+hipchat-hotline --color red "The Enormous Room" "Where'd you go?"
 ```
 
 #### `--notify`
 
-You don't need to interrupt a room if you don't want:
+You do not need to interrupt a room:
 
 ```sh
 hipchat-hotline --notify false TheMiddleEast "This will appear, but won't notify."
