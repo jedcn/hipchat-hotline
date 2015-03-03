@@ -36,5 +36,25 @@ if (wantVersion(argv)) {
   process.exit(1);
 }
 
+function printSuccess(result) {
+  console.log('Message Sent.');
+  if (result && result.length && result.length !== 0) {
+    console.log(result);
+  }
+}
+
+function printError(e) {
+  console.log('Error:');
+  if (e) {
+    console.log(e.message ? e.message : e);
+  }
+}
+
 require('../index')
-  .hotline(process.env, process.argv);
+  .hotline(process.env, process.argv)
+  .done(function(result) {
+    printSuccess(result);
+  }, function(e) {
+    printError(e);
+    process.exit(1);
+  });

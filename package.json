@@ -37,6 +37,7 @@
   "dependencies": {
     "amp-extend": "^1.0.1",
     "amp-reduce": "^1.0.0",
+    "bluebird": "^2.9.13",
     "debug": "^2.1.1",
     "hipchatter": "^0.2.0",
     "minimist": "^1.1.0"
