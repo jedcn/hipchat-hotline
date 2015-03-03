@@ -1,4 +1,40 @@
 #!/usr/bin/env node
 
+function wantVersion(argv) {
+  return argv.version;
+}
+
+function printVersion() {
+  console.log(require('../package').version);
+}
+
+function wantHelp(argv) {
+  return !! argv.help;
+}
+
+function needHelp(argv) {
+  return argv._.length < 2;
+}
+
+function printHelp() {
+  console.log('Usage: hipchat-hotline <recipient> <msg>');
+  console.log('  Options');
+  console.log('    When sending to either user or room:');
+  console.log('      --message-format text | html');
+  console.log('      --notify         false | true');
+  console.log('    When sending to a room:');
+  console.log('      --color          yellow | green | red | gray | purple');
+}
+
+var argv = require('minimist')(process.argv.slice(2));
+if (wantVersion(argv)) {
+  printVersion();
+} else if (wantHelp(argv)) {
+  printHelp();
+} else if (needHelp(argv)) {
+  printHelp();
+  process.exit(1);
+}
+
 require('../index')
   .hotline(process.env, process.argv);
