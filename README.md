@@ -13,9 +13,17 @@ This is an NPM module that provides a command line script named
 `hipchat-hotline`.
 
 `hipchat-hotline` lets you send messages to HipChat users or to
-HipChat rooms by typing `hipchat-hotline <recipient> <message>`.
+HipChat rooms:
 
-Some examples:
+    Usage: hipchat-hotline <recipient> <msg>
+      Options
+        When sending to either user or room:
+          --message-format text | html
+          --notify         false | true
+        When sending to a room:
+          --color          yellow | green | red | gray | purple
+
+Examples:
 
 ```sh
 #
