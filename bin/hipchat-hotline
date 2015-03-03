@@ -31,6 +31,7 @@ if (wantVersion(argv)) {
   printVersion();
 } else if (wantHelp(argv)) {
   printHelp();
+  process.exit(0);
 } else if (needHelp(argv)) {
   printHelp();
   process.exit(1);
