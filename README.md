@@ -10,9 +10,7 @@
 ## Overview
 
 This is an NPM module that provides a command line script named
-`hipchat-hotline`.
-
-`hipchat-hotline` lets you send messages to HipChat users or to
+`hipchat-hotline`. It lets you send messages to HipChat users or to
 HipChat rooms:
 
     Usage: hipchat-hotline <recipient> <msg>
@@ -23,32 +21,74 @@ HipChat rooms:
         When sending to a room:
           --color          yellow | green | red | gray | purple
 
-Examples:
-
-```sh
-#
-# Users..
-hipchat-hotline user@company.com "<a href='$BUILD_URL'>This build</a> failed."
-hipchat-hotline @SpecificUser Your latest commit has been built and deployed.
-
-#
-# Rooms..
-hipchat-hotline 'Maintenance Room' 'Merged branches removed. Cleanup complete.'
-hipchat-hotline --color red TeamRoom "<a href='$BUILD_URL'>This build</a> failed."
-```
-
-It has many uses, but was originally created so that processes (build,
-ci, deployment, general automation) could notify people with when and
-how they completed.
+It has many uses, but was created so that processes (build, ci,
+deployment, general automation) could notify people with when (and
+how) they completed.
 
 **HipChat is a good medium because it's so accessible, and you get
 notifications, timestamps, and search for free.** Build, ci, and
 deployment information is obviously available elsewhere, but it's
 usually less accessible and not ambiently available.
 
----
+Messages to Users:
 
-Additional examples follow, split into two categories:
+```sh
+hipchat-hotline user@company.com "<a href='$BUILD_URL'>This build</a> failed."
+hipchat-hotline @SpecificUser Your latest commit has been built and deployed.
+```
+
+Messages to Rooms:
+
+```sh
+hipchat-hotline 'Maintenance Room' 'Merged branches removed. Cleanup complete.'
+hipchat-hotline --color red TeamRoom "<a href='$BUILD_URL'>This build</a> failed."
+```
+
+## Installation
+
+```sh
+npm install -g hipchat-hotline
+```
+
+### Who are you sending as?
+
+You must set an environment variable named `HIPCHAT_API_TOKEN` in
+order to use `hipchat-hotline`. You will send messages as the identity
+to which this token belongs.
+
+How can you find your token? Presuming you've got a HipChat account,
+login to https://www.hipchat.com and:
+
+* Click Edit Profile
+* Click API Access
+* Look for your token after the text "To access the API as yourself.."
+
+What are you looking for? Tokens are 40 characters long. Here's an
+example of one: `72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q`.
+
+If those instructions didn't work for you, or if the
+https://hipchat.com website changes its user interface, you can note
+what the `www` in https://www.hipchat.com changes to after you login
+and jump straight to the page that shows the token:
+https://what-the-www-changes-to.hipchat.com/account/api
+
+Once you've got this token, set it as an environment variable:
+
+    export HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
+
+Alternatively, you can add this information to a file named
+`~/.hipchat-hotlinerc`.
+
+Add a line that looks like:
+
+    HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
+
+And `hipchat-hotline` will load this information into your environment
+before it runs.
+
+## Examples
+
+Examples follow and are split into two categories:
 
 1. For People, and then
 2. For Rooms
@@ -151,48 +191,7 @@ hipchat-hotline --notify false TheMiddleEast "This will appear, but won't notify
 You can also do the `--message-format` thing, setting it to `text` or
 `html` as you please.
 
-## Installation
-
-### Basics
-
-```sh
-npm install -g hipchat-hotline
-```
-
-### Setup: Who are you sending as?
-
-In order to use `hipchat-hotline` you need to set an environment
-variable named `HIPCHAT_API_TOKEN`. Whenever you use `hipchat-hotline`
-you'll send messages as the identify to which this token belongs.
-
-Presuming you've got a HipChat account, login to
-https://www.hipchat.com with the account you want to send messages as
-and:
-
-* Click Edit Profile
-* Click API Access
-* Look for your token after the text "To access the API as yourself.."
-
-Tokens are 40 characters long. Here's an example so that you will know
-what to look for: `72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q`
-
-Alternatively, note what the `www` in https://www.hipchat.com changes
-to after you login and jump straight to the URL that shows the token:
-https://what-the-www-changes-to.hipchat.com/account/api
-
-Once you've got this token, set it as an environment variable:
-
-    export HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
-
-Alternatively, you can add this information to a file named
-`~/.hipchat-hotlinerc`. Add a line that looks like:
-
-    HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
-
-And `hipchat-hotline` will load this information into your environment
-before it runs.
-
-## More Examples?
+### More Examples?
 
 Here's a shell script that is used for general testing. It provides
 several examples of how this command line utility could be used:
