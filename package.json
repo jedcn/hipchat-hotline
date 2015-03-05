@@ -39,6 +39,7 @@
     "amp-reduce": "^1.0.0",
     "bluebird": "^2.9.13",
     "debug": "^2.1.1",
+    "dotenv": "^0.5.1",
     "hipchatter": "^0.2.0",
     "minimist": "^1.1.0"
   }

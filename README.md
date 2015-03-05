@@ -184,7 +184,13 @@ Once you've got this token, set it as an environment variable:
 
     export HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
 
-And you should be off to the races.
+Alternatively, you can add this information to a file named
+`~/.hipchat-hotlinerc`. Add a line that looks like:
+
+    HIPCHAT_API_TOKEN=72JvEnJuXaI3l4K6zLcC8hp2PUvRGJn09hA2FA4Q
+
+And `hipchat-hotline` will load this information into your environment
+before it runs.
 
 ## More Examples?
 
