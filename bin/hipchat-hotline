@@ -28,6 +28,11 @@ function printError(e) {
   }
 }
 
+var dotenv = require('dotenv'),
+    rcfile = process.env.HOME + '/.hipchat-hotlinerc';
+dotenv._getKeysAndValuesFromEnvFilePath(rcfile);
+dotenv._setEnvs();
+
 require('../index')
   .hotline(process.env, process.argv)
   .done(function(result) {
