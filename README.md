@@ -204,4 +204,4 @@ several examples of how this command line utility could be used:
 If you'd like to contribute check out
 [CONTRIBUTING.md][CONTRIBUTING.md].
 
-[CONTRIBUTING.md]: ./docs/CONTRIBUTING.md
+[CONTRIBUTING.md]: ./CONTRIBUTING.md
